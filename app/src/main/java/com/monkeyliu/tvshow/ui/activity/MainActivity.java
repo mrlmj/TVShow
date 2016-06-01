@@ -17,6 +17,7 @@ import com.monkeyliu.tvshow.R;
 import com.monkeyliu.tvshow.presenter.MainPresenter;
 import com.monkeyliu.tvshow.ui.activity.interfaces.BaseMvpActivity;
 import com.monkeyliu.tvshow.ui.activity.interfaces.IMainView;
+import com.monkeyliu.tvshow.ui.fragment.FragmentA;
 
 public class MainActivity extends BaseMvpActivity<IMainView,MainPresenter>
 		implements NavigationView.OnNavigationItemSelectedListener,IMainView {
@@ -25,16 +26,6 @@ public class MainActivity extends BaseMvpActivity<IMainView,MainPresenter>
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
-
-		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-		fab.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-						.setAction("Action", null).show();
-			}
-		});
 
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -56,28 +47,6 @@ public class MainActivity extends BaseMvpActivity<IMainView,MainPresenter>
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-
-		//noinspection SimplifiableIfStatement
-		if (id == R.id.action_settings) {
-			return true;
-		}
-
-		return super.onOptionsItemSelected(item);
-	}
-
 	@SuppressWarnings("StatementWithEmptyBody")
 	@Override
 	public boolean onNavigationItemSelected(MenuItem item) {
@@ -86,6 +55,7 @@ public class MainActivity extends BaseMvpActivity<IMainView,MainPresenter>
 
 		if (id == R.id.nav_camera) {
 			// Handle the camera action
+			getSupportFragmentManager().beginTransaction().replace(R.id.content,new FragmentA(),"fragmenta").commit();
 		} else if (id == R.id.nav_gallery) {
 
 		} else if (id == R.id.nav_slideshow) {
@@ -111,5 +81,10 @@ public class MainActivity extends BaseMvpActivity<IMainView,MainPresenter>
 	@Override
 	protected int getLayoutId() {
 		return R.layout.activity_main;
+	}
+
+	@Override
+	public void showChangeLogInfo(String assertFileName) {
+
 	}
 }

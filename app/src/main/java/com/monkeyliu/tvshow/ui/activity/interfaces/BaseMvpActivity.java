@@ -2,8 +2,9 @@ package com.monkeyliu.tvshow.ui.activity.interfaces;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 
-import com.monkeyliu.tvshow.presenter.interfaces.BasePresenter;
+import com.monkeyliu.tvshow.presenter.BasePresenter;
 
 /**
  * @author monkey
@@ -14,8 +15,8 @@ public abstract class BaseMvpActivity<V,P extends BasePresenter<V>> extends Base
 	protected P mPresenter;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-		super.onCreate(savedInstanceState, persistentState);
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		mPresenter = initPresenter();
 	}
 

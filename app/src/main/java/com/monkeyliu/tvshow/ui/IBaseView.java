@@ -1,4 +1,4 @@
-package com.monkeyliu.tvshow.ui.interfaces;
+package com.monkeyliu.tvshow.ui;
 
 /**
  * @author monkey
