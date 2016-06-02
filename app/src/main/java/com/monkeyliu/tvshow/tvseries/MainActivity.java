@@ -2,7 +2,6 @@ package com.monkeyliu.tvshow.tvseries;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,10 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.monkeyliu.tvshow.BaseActivity;
-import com.monkeyliu.tvshow.BaseFragment;
 import com.monkeyliu.tvshow.R;
-import com.monkeyliu.tvshow.tvseriesdown.TvSeriesDownFragment;
-import com.monkeyliu.tvshow.tvseriesdown.TvSeriesDownPresenter;
 
 import butterknife.Bind;
 
@@ -37,6 +33,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		new MainPresenter(getSupportFragmentManager(), R.id.content, this);
 	}
 
 	@Override
@@ -52,6 +49,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 		toggle.syncState();
 
 		mNavView.setNavigationItemSelectedListener(this);
+		mNavView.getMenu().getItem(0).setChecked(true);
 	}
 
 	@Override
@@ -67,26 +65,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	@SuppressWarnings("StatementWithEmptyBody")
 	@Override
 	public boolean onNavigationItemSelected(MenuItem item) {
-		// Handle navigation view item clicks here.
-		int id = item.getItemId();
-
-		if (id == R.id.nav_tvseriesdown) {
-			TvSeriesDownFragment tvSeriesDownFragment = new TvSeriesDownFragment();
-			new TvSeriesDownPresenter(tvSeriesDownFragment);
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.content,tvSeriesDownFragment,TvSeriesDownFragment.TAG)
-					.commit();
-		} else if (id == R.id.nav_gallery) {
-
-		} else if (id == R.id.nav_slideshow) {
-
-		} else if (id == R.id.nav_manage) {
-
-		} else if (id == R.id.nav_share) {
-
-		} else if (id == R.id.nav_send) {
-
-		}
+		mPresenter.switchPage(item.getItemId());
 
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawer.closeDrawer(GravityCompat.START);

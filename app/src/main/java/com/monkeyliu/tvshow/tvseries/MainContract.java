@@ -14,7 +14,7 @@ public interface MainContract {
 	}
 	
 	interface Presenter extends BasePresenter{
-		
+		void switchPage(int itemId);
 	}
 	
 }
