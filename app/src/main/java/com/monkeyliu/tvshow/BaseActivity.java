@@ -1,20 +1,26 @@
-package com.monkeyliu.tvshow.ui.activity.interfaces;
+package com.monkeyliu.tvshow;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import butterknife.ButterKnife;
 
 /**
  * @author monkey
- * @brief
- * @date 2016/6/1 0001.
+ * @date 2016/6/2 0002.
  */
 public abstract class BaseActivity extends AppCompatActivity{
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(getLayoutId());
+		ButterKnife.bind(this);
+		initViews();
 	}
-
+	
 	protected abstract int getLayoutId();
+	
+	protected abstract void initViews();
 }
