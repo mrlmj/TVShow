@@ -19,6 +19,7 @@
     
     <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabSelectedTextColor">#fff</item>
+        <item name="tabTextColor">#ccc</item>
     </style>
 
 </resources>

@@ -1,10 +1,7 @@
 package com.monkeyliu.tvshow.utils;
 
-import android.nfc.Tag;
-import android.support.annotation.FloatRange;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.GridLayoutManager;
 
 import com.monkeyliu.tvshow.BaseFragment;
 import com.monkeyliu.tvshow.tvseriesdown.TvSeriesDownContract;
@@ -13,7 +10,6 @@ import com.monkeyliu.tvshow.tvseriesdown.TvSeriesDownPresenter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * @author monkey
