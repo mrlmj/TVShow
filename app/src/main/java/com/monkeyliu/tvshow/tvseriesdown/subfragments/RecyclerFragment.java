@@ -19,7 +19,7 @@ public abstract class RecyclerFragment extends BaseFragment implements SwipeRefr
 	@Bind(R.id.data_recyclerview)
 	RecyclerView mRecyclerView;
 	@Bind(R.id.swipe_refresh_layout)
-	SwipeRefreshLayout mRefreshLayout;
+	SwipeRefreshLayout mSwipeRefreshLayout;
 	
 	@Override
 	protected int getLayoutId() {
@@ -28,7 +28,7 @@ public abstract class RecyclerFragment extends BaseFragment implements SwipeRefr
 
 	@Override
 	protected void initViews() {
-		mRefreshLayout.setColorSchemeColors(R.color.colorPrimary,R.color.colorPrimaryDark,R.color.colorAccent);
-		mRefreshLayout.setOnRefreshListener(this);
+		mSwipeRefreshLayout.setColorSchemeColors(R.color.colorPrimary,R.color.colorPrimaryDark,R.color.colorAccent);
+		mSwipeRefreshLayout.setOnRefreshListener(this);
 	}
 }

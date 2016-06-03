@@ -5,9 +5,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.monkeyliu.tvshow.data.bean.Drama;
 import com.monkeyliu.tvshow.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author monkey
@@ -23,6 +25,9 @@ public class TvListFragment extends RecyclerFragment implements TvListContract.V
 	
 	private int mType;
 	private TvListAdapter mAdapter;
+	private ArrayList<Drama> mData = new ArrayList<>();
+	
+	private TvListContract.Presenter mPresenter;
 	
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,33 +47,31 @@ public class TvListFragment extends RecyclerFragment implements TvListContract.V
 	protected void initViews() {
 		super.initViews();
 		mType = getArguments().getInt(Constants.TV_TYPE);
-		ArrayList<String> data = new ArrayList<>();
-		data.add("hello");
-		data.add("hello");
-		data.add("hello");
-		data.add("hello");
-		data.add("hello");
-		data.add("hello");
-		data.add("hello");
-		mAdapter = new TvListAdapter(getContext(),data);
+		mAdapter = new TvListAdapter(getContext(),mData);
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 		mRecyclerView.setAdapter(mAdapter);
 		mRecyclerView.setHasFixedSize(true);
 	}
 
 	@Override
-	public void onRefresh() {
+	public void onResume() {
+		super.onResume();
+		mPresenter.reloadData();
+	}
 
+	@Override
+	public void onRefresh() {
+		mPresenter.reloadData();
 	}
 
 	@Override
 	public void setPresenter(TvListContract.Presenter presenter) {
-
+		mPresenter = presenter;
 	}
 
 	@Override
 	public void setLoadingIndicator(boolean active) {
-
+		mSwipeRefreshLayout.setRefreshing(active);
 	}
 
 	@Override
@@ -78,6 +81,16 @@ public class TvListFragment extends RecyclerFragment implements TvListContract.V
 
 	@Override
 	public void showLoadingMore() {
+
+	}
+
+	@Override
+	public void fillData(ArrayList<Drama> data) {
+		mAdapter.fillDataWithClear(data);
+	}
+
+	@Override
+	public void appendData(ArrayList<Drama> data) {
 
 	}
 }

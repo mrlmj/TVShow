@@ -9,8 +9,10 @@ import android.widget.MediaController;
 import android.widget.TextView;
 
 import com.monkeyliu.tvshow.R;
+import com.monkeyliu.tvshow.data.bean.Drama;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,12 +25,23 @@ public class TvListAdapter extends RecyclerView.Adapter<TvListAdapter.ViewHolder
 	
 	private Context mContext;
 	private LayoutInflater mLayoutInflater;
-	private ArrayList<String> mTextList;
+	private ArrayList<Drama> mDramaList;
 	
-	public TvListAdapter(Context context, ArrayList<String> textList){
+	public TvListAdapter(Context context, ArrayList<Drama> textList){
 		mContext = context;
 		mLayoutInflater = LayoutInflater.from(mContext);
-		mTextList = textList;
+		mDramaList = textList;
+	}
+	
+	public void fillDataWithClear(ArrayList<Drama> dramaList){
+		mDramaList.clear();
+		mDramaList = dramaList;
+		notifyDataSetChanged();
+	}
+	
+	public void appendMoreData(ArrayList<Drama> dramasList){
+		mDramaList.addAll(dramasList);
+		notifyDataSetChanged();
 	}
 	
 	@Override
@@ -38,18 +51,21 @@ public class TvListAdapter extends RecyclerView.Adapter<TvListAdapter.ViewHolder
 
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
-		holder.mTextview.setText(mTextList.get(position));
+		holder.mNameTextview.setText(mDramaList.get(position).getName());
+		holder.mUrlTextView.setText(mDramaList.get(position).getUrl());
 	}
 
 	@Override
 	public int getItemCount() {
-		return mTextList.size();
+		return mDramaList.size();
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
 		
-		@Bind(R.id.textview_content)
-		TextView mTextview;
+		@Bind(R.id.textview_name)
+		TextView mNameTextview;
+		@Bind(R.id.textview_url)
+		TextView mUrlTextView;
 		
 		public ViewHolder(View itemView) {
 			super(itemView);
