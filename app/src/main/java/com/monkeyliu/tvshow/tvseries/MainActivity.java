@@ -10,6 +10,8 @@ import android.view.MenuItem;
 
 import com.monkeyliu.tvshow.BaseActivity;
 import com.monkeyliu.tvshow.R;
+import com.monkeyliu.tvshow.utils.FragmentSwitcher;
+import com.orhanobut.logger.Logger;
 
 import butterknife.Bind;
 
@@ -43,13 +45,37 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
 	@Override
 	protected void initViews() {
+		setupAppBar();
+		setupDrawer();
+		mToolbar.setTitle(R.string.app_name);
+	}
+
+	private void setupDrawer(){
 		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 				this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-		mDrawerLayout.setDrawerListener(toggle);
+		mDrawerLayout.addDrawerListener(toggle);
 		toggle.syncState();
 
 		mNavView.setNavigationItemSelectedListener(this);
+	}
+	
+	private void setupAppBar(){
+		setSupportActionBar(mToolbar);
+		getSupportActionBar().setHomeButtonEnabled(true);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
 		mNavView.getMenu().getItem(0).setChecked(true);
+		mPresenter.switchPage(mNavView.getMenu().getItem(0).getItemId());
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		Logger.d("onDestory");
+		mPresenter.exit();
 	}
 
 	@Override
@@ -65,10 +91,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 	@SuppressWarnings("StatementWithEmptyBody")
 	@Override
 	public boolean onNavigationItemSelected(MenuItem item) {
+		Logger.d("menu selected %s",item.getTitle());
 		mPresenter.switchPage(item.getItemId());
-
-		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-		drawer.closeDrawer(GravityCompat.START);
+		mDrawerLayout.closeDrawer(GravityCompat.START);
 		return true;
 	}
 

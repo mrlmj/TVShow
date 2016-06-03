@@ -28,4 +28,9 @@ public class MainPresenter implements MainContract.Presenter {
 				mSwitcher.switchTo(TvSeriesDownFragment.TAG);
 		}
 	}
+
+	@Override
+	public void exit() {
+		FragmentSwitcher.FragmentFactory.clearFragments();
+	}
 }

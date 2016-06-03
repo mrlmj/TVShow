@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TVShow</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    
+    <!-- 美剧类型 -->
+    <string name="tv_type_action">动作分类</string>
+    <string name="tv_type_comedy">情景喜剧</string>
+    <string name="tv_type_thriller">灵异惊悚</string>
+    <string name="tv_type_magic">科幻魔幻</string>
+    <string name="tv_type_crime">罪案谍战</string>
+</resources>

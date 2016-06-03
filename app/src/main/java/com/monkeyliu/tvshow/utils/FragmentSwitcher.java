@@ -119,7 +119,7 @@ public class FragmentSwitcher {
 	/**
 	 * Fragment工厂
 	 */
-	static class FragmentFactory{
+	public static class FragmentFactory{
 		
 		private static HashMap<String, BaseFragment> mFragmentMap = new HashMap<>();
 		
@@ -137,6 +137,10 @@ public class FragmentSwitcher {
 				mFragmentMap.put(tag,fragment);
 			}
 			return fragment;
+		}
+		
+		public static void clearFragments(){
+			mFragmentMap.clear();
 		}
 	}
 }

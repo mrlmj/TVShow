@@ -15,6 +15,12 @@ import java.util.ArrayList;
  */
 public class TvListFragment extends RecyclerFragment implements TvListContract.View {
 
+	public static final int TYPE_ACTION = 0;
+	public static final int TYPE_COMEDY = 1;
+	public static final int TYPE_THRILLER = 1;
+	public static final int TYPE_MAGIC = 1;
+	public static final int TYPE_CRIME = 1;
+	
 	private int mType;
 	private TvListAdapter mAdapter;
 	

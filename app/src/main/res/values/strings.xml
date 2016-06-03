@@ -3,6 +3,11 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
+    
+    <!-- TvSeries Type -->
+    <string name="tv_type_action">Action</string>
+    <string name="tv_type_comedy">Comedy</string>
+    <string name="tv_type_thriller">Thriller</string>
+    <string name="tv_type_magic">Magic</string>
+    <string name="tv_type_crime">Crime</string>
 </resources>

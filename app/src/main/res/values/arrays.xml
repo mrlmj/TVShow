@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tvseries_types">
+        <item>@string/tv_type_action</item>
+        <item>@string/tv_type_comedy</item>
+        <item>@string/tv_type_thriller</item>
+        <item>@string/tv_type_magic</item>
+        <item>@string/tv_type_crime</item>
+    </string-array>
+</resources>
