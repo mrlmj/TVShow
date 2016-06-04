@@ -5,7 +5,7 @@ import android.support.v4.view.ViewPager;
 
 import com.monkeyliu.tvshow.BaseFragment;
 import com.monkeyliu.tvshow.R;
-import com.monkeyliu.tvshow.tvseriesdown.subfragments.RecyclerFragment;
+import com.monkeyliu.tvshow.tvseriesdown.subfragments.LoadingFragment;
 import com.monkeyliu.tvshow.tvseriesdown.subfragments.TvListFragment;
 import com.orhanobut.logger.Logger;
 
@@ -26,7 +26,7 @@ public class TvSeriesDownFragment extends BaseFragment implements TvSeriesDownCo
 	@Bind(R.id.viewpager)
 	ViewPager mViewPager;
 	
-	private List<RecyclerFragment> mFragments = new ArrayList<>();
+	private List<LoadingFragment> mFragments = new ArrayList<>();
 	private List<String> mTitles = new ArrayList<>();
 	
 	private TabPagerAdapter mPagerAdapter;

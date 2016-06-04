@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.monkeyliu.tvshow.tvseriesdown.subfragments.RecyclerFragment;
+import com.monkeyliu.tvshow.tvseriesdown.subfragments.LoadingFragment;
 
 import java.util.List;
 
@@ -14,14 +14,14 @@ import java.util.List;
  */
 public class TabPagerAdapter extends FragmentPagerAdapter{
 
-	private List<RecyclerFragment> mFragments;
+	private List<LoadingFragment> mFragments;
 	private List<String> mTitles;
 	
 	public TabPagerAdapter(FragmentManager fm) {
 		super(fm);
 	}
 
-	public void setFragments(List<RecyclerFragment> fragments, List<String> titles){
+	public void setFragments(List<LoadingFragment> fragments, List<String> titles){
 		mFragments = fragments;
 		mTitles = titles;
 	}
