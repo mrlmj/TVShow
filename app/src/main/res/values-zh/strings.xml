@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">TVShow</string>
+    <string name="app_name">美剧秀</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    
+    <string name="navigation_drawer_open">打开侧边栏</string>
+    <string name="navigation_drawer_close">关闭侧边栏</string>
+
+    <!-- 导航标题 -->
+    <string name="title_nav_tvdown">美剧下载</string>
+
     <!-- 美剧类型 -->
     <string name="tv_type_action">动作分类</string>
     <string name="tv_type_comedy">情景喜剧</string>

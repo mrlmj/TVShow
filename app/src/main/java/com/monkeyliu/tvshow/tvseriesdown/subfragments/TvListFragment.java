@@ -1,6 +1,5 @@
 package com.monkeyliu.tvshow.tvseriesdown.subfragments;
 
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,9 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.monkeyliu.tvshow.R;
-import com.monkeyliu.tvshow.data.bean.Drama;
+import com.monkeyliu.tvshow.data.bean.TvIntro;
 import com.monkeyliu.tvshow.utils.Constants;
-import com.vlonjatg.progressactivity.ProgressActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +28,7 @@ public class TvListFragment extends LoadingFragment implements TvListContract.Vi
 	
 	private int mType;
 	private TvListAdapter mAdapter;
-	private ArrayList<Drama> mData = new ArrayList<>();
+	private ArrayList<TvIntro> mData = new ArrayList<>();
 	
 	private TvListContract.Presenter mPresenter;
 	
@@ -60,8 +58,8 @@ public class TvListFragment extends LoadingFragment implements TvListContract.Vi
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
+	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
 		mPresenter.reloadData();
 	}
 
@@ -81,12 +79,12 @@ public class TvListFragment extends LoadingFragment implements TvListContract.Vi
 	}
 
 	@Override
-	public void showLoadingError() {
+	public void showLoadingError(String errorMsg) {
 		Drawable drawable = getResources().getDrawable(R.mipmap.ic_launcher);
-		mProgressLayout.showError(drawable, "NoConnect", "Could not connect to our servers", "try agin", new View.OnClickListener() {
+		mProgressLayout.showError(drawable, "NoConnect", errorMsg, "try agin", new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				mPresenter.reloadData();
 			}
 		});
 	}
@@ -97,12 +95,12 @@ public class TvListFragment extends LoadingFragment implements TvListContract.Vi
 	}
 
 	@Override
-	public void fillData(ArrayList<Drama> data) {
+	public void fillData(List<TvIntro> data) {
 		mAdapter.fillDataWithClear(data);
 	}
 
 	@Override
-	public void appendData(ArrayList<Drama> data) {
+	public void appendData(List<TvIntro> data) {
 		mAdapter.appendMoreData(data);
 	}
 	

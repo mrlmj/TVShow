@@ -30,4 +30,9 @@ dependencies {
 
     //进度ViewGroup,显示进度条，加载错误，正常内容等
     compile 'com.github.vlonjatg:progress-activity:v1.0.3'
+    //Bomb后端服务支持
+    compile 'cn.bmob.android:bmob-sdk:3.4.7-aar'
+    compile 'cn.bmob.android:http-legacy:1.0'
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

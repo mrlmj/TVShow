@@ -5,11 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 
 import com.monkeyliu.tvshow.R;
-import com.monkeyliu.tvshow.data.bean.Drama;
+import com.monkeyliu.tvshow.data.bean.TvIntro;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,21 +27,21 @@ public class TvListAdapter extends RecyclerView.Adapter<TvListAdapter.ViewHolder
 	
 	private Context mContext;
 	private LayoutInflater mLayoutInflater;
-	private ArrayList<Drama> mDramaList;
+	private List<TvIntro> mDramaList;
 	
-	public TvListAdapter(Context context, ArrayList<Drama> textList){
+	public TvListAdapter(Context context, ArrayList<TvIntro> textList){
 		mContext = context;
 		mLayoutInflater = LayoutInflater.from(mContext);
 		mDramaList = textList;
 	}
 	
-	public void fillDataWithClear(ArrayList<Drama> dramaList){
+	public void fillDataWithClear(List<TvIntro> dramaList){
 		mDramaList.clear();
 		mDramaList = dramaList;
 		notifyDataSetChanged();
 	}
 	
-	public void appendMoreData(ArrayList<Drama> dramasList){
+	public void appendMoreData(List<TvIntro> dramasList){
 		mDramaList.addAll(dramasList);
 		notifyDataSetChanged();
 	}
@@ -51,8 +53,9 @@ public class TvListAdapter extends RecyclerView.Adapter<TvListAdapter.ViewHolder
 
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
-		holder.mNameTextview.setText(mDramaList.get(position).getName());
-		holder.mUrlTextView.setText(mDramaList.get(position).getUrl());
+		holder.mTvnameTextView.setText(mDramaList.get(position).getTv_name());
+		Picasso.with(mContext).load(mDramaList.get(position).getTv_imageurl()).into(holder.mTvimgImageView);
+		holder.mTvintroTextView.setText(mDramaList.get(position).getTv_intro());
 	}
 
 	@Override
@@ -62,10 +65,12 @@ public class TvListAdapter extends RecyclerView.Adapter<TvListAdapter.ViewHolder
 
 	class ViewHolder extends RecyclerView.ViewHolder {
 		
-		@Bind(R.id.textview_name)
-		TextView mNameTextview;
-		@Bind(R.id.textview_url)
-		TextView mUrlTextView;
+		@Bind(R.id.tvname_textview)
+		TextView mTvnameTextView;
+		@Bind(R.id.tvimg_imageview)
+		ImageView mTvimgImageView;
+		@Bind(R.id.tvintro_textview)
+		TextView mTvintroTextView;
 		
 		public ViewHolder(View itemView) {
 			super(itemView);

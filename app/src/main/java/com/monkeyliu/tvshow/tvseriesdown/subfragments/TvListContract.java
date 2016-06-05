@@ -2,7 +2,7 @@ package com.monkeyliu.tvshow.tvseriesdown.subfragments;
 
 import com.monkeyliu.tvshow.BasePresenter;
 import com.monkeyliu.tvshow.BaseView;
-import com.monkeyliu.tvshow.data.bean.Drama;
+import com.monkeyliu.tvshow.data.bean.TvIntro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +20,10 @@ public interface TvListContract {
 	
 	interface View extends BaseView<Presenter>{
 		void setLoadingIndicator(boolean active);
-		void showLoadingError();
+		void showLoadingError(String errorMsg);
 		void showLoadingMore(boolean active);
-		void fillData(ArrayList<Drama> data);
-		void appendData(ArrayList<Drama> data);
+		void fillData(List<TvIntro> data);
+		void appendData(List<TvIntro> data);
 	}
 	
 }

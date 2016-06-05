@@ -3,7 +3,10 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    
+
+    <!-- Nav Type -->
+    <string name="title_nav_tvdown">TvSeriesDownLoad</string>
+
     <!-- TvSeries Type -->
     <string name="tv_type_action">Action</string>
     <string name="tv_type_comedy">Comedy</string>

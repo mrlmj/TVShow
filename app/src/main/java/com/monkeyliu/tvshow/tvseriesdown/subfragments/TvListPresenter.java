@@ -1,9 +1,14 @@
 package com.monkeyliu.tvshow.tvseriesdown.subfragments;
 
-import com.monkeyliu.tvshow.data.bean.Drama;
+import com.monkeyliu.tvshow.data.bean.TvIntro;
+import com.monkeyliu.tvshow.tvseries.TVApplication;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
 
 /**
  * @author monkey
@@ -21,19 +26,21 @@ public class TvListPresenter implements TvListContract.Presenter {
 	@Override
 	public void reloadData() {
 		mView.setLoadingIndicator(true);
-		ArrayList<Drama> data = new ArrayList<>();
-			data.add(new Drama("liu","123"));
-			data.add(new Drama("liu","123"));
-			data.add(new Drama("liu","123"));
-			data.add(new Drama("liu","123"));
-			data.add(new Drama("liu","123"));
-			data.add(new Drama("liu","123"));
-			data.add(new Drama("liu","123"));
-			data.add(new Drama("liu","123"));
-			data.add(new Drama("liu","123"));
-			data.add(new Drama("liu","123"));
-		mView.setLoadingIndicator(false);
-		mView.fillData(data);
+		BmobQuery<TvIntro> query = new BmobQuery<>();
+		query.setLimit(10);
+		query.findObjects(TVApplication.sContext, new FindListener<TvIntro>() {
+			@Override
+			public void onSuccess(List<TvIntro> list) {
+				mView.fillData(list);
+				mView.setLoadingIndicator(false);
+			}
+
+			@Override
+			public void onError(int i, String s) {
+				Logger.d("load data error %s", s);
+				mView.showLoadingError(s);
+			}
+		});
 	}
 	
 
@@ -41,18 +48,20 @@ public class TvListPresenter implements TvListContract.Presenter {
 	public void loadMoreData() {
 		Logger.d("loadMoreData");
 		mView.showLoadingMore(true);
-		ArrayList<Drama> data = new ArrayList<>();
-		data.add(new Drama("liu","123"));
-		data.add(new Drama("liu","123"));
-		data.add(new Drama("liu","123"));
-		data.add(new Drama("liu","123"));
-		data.add(new Drama("liu","123"));
-		data.add(new Drama("liu","123"));
-		data.add(new Drama("liu","123"));
-		data.add(new Drama("liu","123"));
-		data.add(new Drama("liu","123"));
-		data.add(new Drama("liu","123"));
-		mView.showLoadingMore(false);
-		mView.appendData(data);
+		BmobQuery<TvIntro> query = new BmobQuery<>();
+		query.setLimit(10);
+		query.findObjects(TVApplication.sContext, new FindListener<TvIntro>() {
+			@Override
+			public void onSuccess(List<TvIntro> list) {
+				mView.appendData(list);
+				mView.showLoadingMore(false);
+			}
+
+			@Override
+			public void onError(int i, String s) {
+				Logger.d("load data error %s", s);
+				mView.showLoadingError(s);
+			}
+		});
 	}
 }
