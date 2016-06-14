@@ -21,7 +21,7 @@ public interface TvListContract {
 	interface View extends BaseView<Presenter>{
 		void setLoadingIndicator(boolean active);
 		void showLoadingError(String errorMsg);
-		void showLoadingMore(boolean active);
+		void setLoadingMoreIndicator(boolean active);
 		void fillData(List<TvIntro> data);
 		void appendData(List<TvIntro> data);
 	}

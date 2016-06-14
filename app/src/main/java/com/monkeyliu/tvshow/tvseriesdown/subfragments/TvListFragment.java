@@ -90,7 +90,7 @@ public class TvListFragment extends LoadingFragment implements TvListContract.Vi
 	}
 
 	@Override
-	public void showLoadingMore(boolean active) {
+	public void setLoadingMoreIndicator(boolean active) {
 		mSwipeRefreshLayout.setRefreshing(active);
 	}
 
